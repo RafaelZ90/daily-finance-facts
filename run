@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Prefer a modern Node: project .tools/node, then PATH, then Homebrew.
+set -euo pipefail
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+
+if [[ -x "$ROOT/.tools/node/bin/node" ]]; then
+  export PATH="$ROOT/.tools/node/bin:$PATH"
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "Node.js is required (18+). Install from https://nodejs.org or run:"
+  echo "  mkdir -p .tools && curl -fsSL https://nodejs.org/dist/v22.18.0/node-v22.18.0-darwin-arm64.tar.gz | tar -xz -C .tools && mv .tools/node-v22.18.0-darwin-arm64 .tools/node"
+  exit 1
+fi
+
+MAJOR="$(node -p "process.versions.node.split('.')[0]")"
+if [[ "$MAJOR" -lt 18 ]]; then
+  echo "Node $(node -v) is too old. Need 18+."
+  exit 1
+fi
+
+cd "$ROOT"
+exec node "$@"

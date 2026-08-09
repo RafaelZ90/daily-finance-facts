@@ -1,0 +1,662 @@
+[
+  {
+    "topic": "Equity as residual claim",
+    "category": "Asset classes",
+    "wikiTitle": "Equity (finance)",
+    "fact": "Common equity is a residual claim: shareholders get what’s left after creditors, preferred holders, and other senior claims. That residual can be large — or zero — which is why equity returns are higher and more volatile than debt."
+  },
+  {
+    "topic": "Fixed income cash flows",
+    "category": "Asset classes",
+    "wikiTitle": "Fixed income",
+    "fact": "A vanilla bond is a schedule of known cash flows (coupons + principal) priced by discounting them at rates that reflect credit, liquidity, and the shape of the yield curve. Price moves inversely with those discount rates."
+  },
+  {
+    "topic": "Commodities vs financial assets",
+    "category": "Asset classes",
+    "wikiTitle": "Commodity",
+    "fact": "Most commodities don’t pay coupons or dividends; their ‘return’ comes from spot price changes, roll yield in futures curves, and sometimes convenience yield. Holding physical inventory also costs storage and insurance."
+  },
+  {
+    "topic": "FX as a relative price",
+    "category": "Asset classes",
+    "wikiTitle": "Foreign exchange market",
+    "fact": "An FX rate is the relative price of two currencies (and thus two monetary regimes). Spot FX has no expected ‘yield’ in isolation — carry, interest differentials, and risk premia show up when you fund one currency with another."
+  },
+  {
+    "topic": "Alternatives umbrella",
+    "category": "Asset classes",
+    "wikiTitle": "Alternative investment",
+    "fact": "‘Alternatives’ is a catch-all for private equity, hedge funds, real assets, infrastructure, and private credit — strategies that often trade liquidity, transparency, and fees for different return drivers and lower mark-to-market correlation."
+  },
+  {
+    "topic": "Primary vs secondary markets",
+    "category": "Market structure",
+    "wikiTitle": "Primary market",
+    "fact": "Primary markets raise capital (IPOs, bond syndications, private placements). Secondary markets transfer existing claims between investors. Issuers get cash only in the primary; secondary prices still matter because they set the cost of future capital."
+  },
+  {
+    "topic": "Exchange vs OTC",
+    "category": "Market structure",
+    "wikiTitle": "Over-the-counter (finance)",
+    "fact": "Exchanges standardize contracts, concentrate liquidity, and usually clear through a CCP. OTC markets customize terms bilaterally — more flexible, but you inherit counterparty, documentation, and often less transparent pricing."
+  },
+  {
+    "topic": "Central clearing",
+    "category": "Market structure",
+    "wikiTitle": "Central counterparty clearing",
+    "fact": "A central counterparty (CCP) novates trades: it becomes buyer to every seller and seller to every buyer. That mutualizes counterparty risk via margin and default funds — it doesn’t eliminate risk, it concentrates and manages it."
+  },
+  {
+    "topic": "Order books and spreads",
+    "category": "Market structure",
+    "wikiTitle": "Bid–ask spread",
+    "fact": "The bid–ask spread is the market maker’s inventory and adverse-selection fee. Tight spreads signal competitive liquidity; wide spreads scream uncertainty, thin books, or informed flow you’re paying to avoid."
+  },
+  {
+    "topic": "Price discovery",
+    "category": "Market structure",
+    "wikiTitle": "Price discovery",
+    "fact": "Price discovery is the process by which trading aggregates dispersed information into a quote. Illiquid or fragmented markets don’t ‘lack a price’ — they have noisier, slower discovery and larger gaps between prints."
+  },
+  {
+    "topic": "Dark pools",
+    "category": "Market structure",
+    "wikiTitle": "Dark pool",
+    "fact": "Dark pools match orders without displaying depth pre-trade, mainly to reduce signaling for large institutional size. They trade off transparency for lower market impact — and can fragment visible liquidity on lit venues."
+  },
+  {
+    "topic": "Settlement vs trading",
+    "category": "Market structure",
+    "wikiTitle": "Settlement (finance)",
+    "fact": "Trade date is when you agree; settlement is when cash and securities actually exchange (T+1 in many equity markets). Settlement risk is why pipelines, custodians, and fail management matter as much as the screen price."
+  },
+  {
+    "topic": "Discounted cash flow",
+    "category": "Valuation",
+    "wikiTitle": "Discounted cash flow",
+    "fact": "DCF says value equals expected future cash flows discounted for time and risk. The model is simple; the hard part is honest forecasts, a coherent discount rate, and admitting how sensitive the answer is to terminal-value assumptions."
+  },
+  {
+    "topic": "Enterprise vs equity value",
+    "category": "Valuation",
+    "wikiTitle": "Enterprise value",
+    "fact": "Enterprise value (EV) is the value of core operations to all capital providers. Equity value = EV − net debt (and similar claims). Mixing EV multiples with equity metrics is a classic way to misprice a levered business."
+  },
+  {
+    "topic": "Multiples are abbreviated DCFs",
+    "category": "Valuation",
+    "wikiTitle": "Valuation (finance)",
+    "fact": "Trading multiples (P/E, EV/EBITDA) are shorthand for growth, margins, risk, and capital intensity. A ‘cheap’ multiple can mean mispricing — or correctly priced low growth, high leverage, or earnings quality issues."
+  },
+  {
+    "topic": "Cost of capital",
+    "category": "Valuation",
+    "wikiTitle": "Cost of capital",
+    "fact": "WACC blends after-tax cost of debt and cost of equity at target weights. Using yesterday’s capital structure for tomorrow’s project, or discounting equity cash flows at WACC, is how models quietly lie."
+  },
+  {
+    "topic": "Risk-free rate building block",
+    "category": "Valuation",
+    "wikiTitle": "Risk-free interest rate",
+    "fact": "The risk-free rate anchors discount rates. In practice desks use government yields matching cash-flow currency and horizon — then layer credit, equity, and liquidity premia. Currency mismatch here is a silent valuation bug."
+  },
+  {
+    "topic": "Terminal value dominance",
+    "category": "Valuation",
+    "wikiTitle": "Terminal value (finance)",
+    "fact": "In many DCFs, most of the value sits in the terminal value. That means small changes in long-run growth or exit multiple dwarf year-1–5 forecast precision — which is why ‘precision’ past the decimal often isn’t."
+  },
+  {
+    "topic": "Risk and expected return",
+    "category": "Risk & return",
+    "wikiTitle": "Risk–return spectrum",
+    "fact": "In equilibrium models, higher systematic risk should earn higher expected return. Realized return is noisy; expected return is what the market prices. Conflating the two is how backtests become marketing."
+  },
+  {
+    "topic": "Idiosyncratic vs systematic risk",
+    "category": "Risk & return",
+    "wikiTitle": "Systematic risk",
+    "fact": "Idiosyncratic risk can be diversified away in a broad portfolio; systematic risk cannot. CAPM-style pricing cares about the latter. Concentrated stock pickers get paid (maybe) for both — and for luck."
+  },
+  {
+    "topic": "Volatility is not the only risk",
+    "category": "Risk & return",
+    "wikiTitle": "Volatility (finance)",
+    "fact": "Standard deviation treats upside and downside symmetrically and ignores liquidity, path, and drawdown pain. A strategy can look low-vol until the left tail arrives — then ‘risk’ was always about what you couldn’t model."
+  },
+  {
+    "topic": "Diversification math",
+    "category": "Portfolio theory",
+    "wikiTitle": "Diversification (finance)",
+    "fact": "Portfolio variance depends on weighted variances and covariances. Adding an asset can reduce risk even if it’s volatile, if its correlation is low enough. Diversification fails when correlations spike in stress — precisely when you wanted it."
+  },
+  {
+    "topic": "Efficient frontier",
+    "category": "Portfolio theory",
+    "wikiTitle": "Efficient frontier",
+    "fact": "Mean–variance optimization maps portfolios that maximize expected return for a given variance. In practice, estimated inputs are noisy, so unconstrained ‘optimal’ weights often concentrate and churn — regularization is not optional."
+  },
+  {
+    "topic": "Beta as co-movement",
+    "category": "Portfolio theory",
+    "wikiTitle": "Beta (finance)",
+    "fact": "Beta measures sensitivity to a market factor, not ‘riskiness’ in isolation. A low-beta stock can still blow up idiosyncratically; a high-beta stock can be a leveraged play on the same factor everyone already owns."
+  },
+  {
+    "topic": "Sharpe ratio limits",
+    "category": "Portfolio theory",
+    "wikiTitle": "Sharpe ratio",
+    "fact": "Sharpe ratio is excess return per unit of volatility. It assumes roughly symmetric, stable returns and ignores liquidity, leverage constraints, and tail shape. Gaming Sharpe by selling crash insurance is an old trick."
+  },
+  {
+    "topic": "Correlation ≠ causation in markets",
+    "category": "Portfolio theory",
+    "wikiTitle": "Correlation",
+    "fact": "Sample correlations are unstable across regimes. Assets that ‘diversify’ in calm markets often co-crash when funding liquidity dries up. Treat historical correlation as a clue, not a contract."
+  },
+  {
+    "topic": "Bond duration",
+    "category": "Fixed income",
+    "wikiTitle": "Bond duration",
+    "fact": "Macaulay duration is the weighted average time to cash flows; modified duration approximates percentage price change for a yield move. Longer duration means more rate sensitivity — and more ‘safe’ bond pain when yields rise."
+  },
+  {
+    "topic": "Convexity",
+    "category": "Fixed income",
+    "wikiTitle": "Bond convexity",
+    "fact": "Duration is a linear approximation; convexity captures curvature. For plain vanilla bonds, positive convexity means prices rise more (and fall less) than duration predicts for large yield moves — valuable, and usually not free."
+  },
+  {
+    "topic": "Yield curve shapes",
+    "category": "Fixed income",
+    "wikiTitle": "Yield curve",
+    "fact": "The yield curve embeds expectations, risk premia, and sometimes segmented demand. Inversion (short rates above long) has often preceded slowdowns, but it’s a signal about the curve — not a timing oracle for equities."
+  },
+  {
+    "topic": "Credit spreads",
+    "category": "Fixed income",
+    "wikiTitle": "Credit spread",
+    "fact": "A credit spread compensates for expected default loss, risk premia, and liquidity. Spread tightening isn’t always ‘fundamentals improving’ — it can be a hunt for yield compressing risk compensation."
+  },
+  {
+    "topic": "Investment grade vs high yield",
+    "category": "Fixed income",
+    "wikiTitle": "High-yield debt",
+    "fact": "Rating categories bucket default risk, but the BB/BBB boundary is discontinuous for many mandates. Forced selling around downgrades can move prices more than the change in fundamentals alone would imply."
+  },
+  {
+    "topic": "Callable bonds",
+    "category": "Fixed income",
+    "wikiTitle": "Callable bond",
+    "fact": "Issuers call bonds when it’s advantageous to refinance — typically when rates fall. Investors are short that option, so callable bonds offer higher yields than bullets and underperform in strong rallies when calls bite."
+  },
+  {
+    "topic": "Inflation-linked bonds",
+    "category": "Fixed income",
+    "wikiTitle": "Inflation-indexed bond",
+    "fact": "Linkers adjust principal (and thus coupons) with an inflation index. Breakevens implied by linker vs nominal yields are market inflation compensation — not a pure forecast, because of liquidity and risk premia."
+  },
+  {
+    "topic": "Repo financing",
+    "category": "Fixed income",
+    "wikiTitle": "Repurchase agreement",
+    "fact": "A repo is a collateralized loan dressed as a sale-and-repurchase. It funds inventories and levered positions; stress in repo markets is often stress in the plumbing of rates and credit trading."
+  },
+  {
+    "topic": "Forwards vs futures",
+    "category": "Derivatives",
+    "wikiTitle": "Futures contract",
+    "fact": "Forwards are OTC, customized, and bilaterally margined (if at all). Futures are exchange-traded, standardized, and marked to market daily through a clearinghouse. Same economic idea; very different counterparty and liquidity profiles."
+  },
+  {
+    "topic": "Options as asymmetric payoffs",
+    "category": "Derivatives",
+    "wikiTitle": "Option (finance)",
+    "fact": "A call (put) pays off if the underlying finishes above (below) the strike — otherwise expires worthless. Premium buys asymmetry: limited loss for the buyer, potentially large gain; the seller is short that convexity."
+  },
+  {
+    "topic": "Put-call parity",
+    "category": "Derivatives",
+    "wikiTitle": "Put–call parity",
+    "fact": "For European options on non-dividend underlyings, put-call parity links calls, puts, spot, and bonds so no arbitrage holds. When parity breaks after costs, something’s mispriced — or you’re missing dividends, early exercise, or borrow."
+  },
+  {
+    "topic": "Implied volatility",
+    "category": "Derivatives",
+    "wikiTitle": "Implied volatility",
+    "fact": "Implied vol is the volatility parameter that makes an option model match market price. It’s a market’s fear/greed quote in vol units — not a promise of realized volatility, and often smiles across strikes for a reason."
+  },
+  {
+    "topic": "Greeks: delta and gamma",
+    "category": "Derivatives",
+    "wikiTitle": "Greeks (finance)",
+    "fact": "Delta is first-order sensitivity to the underlying; gamma is how fast delta changes. Market makers hedging short gamma buy strength and sell weakness — amplifying moves when everyone is positioned the same way."
+  },
+  {
+    "topic": "Interest rate swaps",
+    "category": "Derivatives",
+    "wikiTitle": "Interest rate swap",
+    "fact": "A plain vanilla IRS exchanges fixed for floating payments on a notional (no principal exchange). It’s the workhorse for managing duration and expressing views on the path of short rates versus fixed."
+  },
+  {
+    "topic": "Credit default swaps",
+    "category": "Derivatives",
+    "wikiTitle": "Credit default swap",
+    "fact": "A CDS transfers credit risk: protection buyer pays a spread; seller pays on credit events. CDS spreads are a liquid lens on credit views — and can diverge from cash bonds due to funding, cheapest-to-deliver, and basis dynamics."
+  },
+  {
+    "topic": "Basis risk",
+    "category": "Derivatives",
+    "wikiTitle": "Basis risk",
+    "fact": "Hedging with an imperfectly correlated instrument leaves basis risk — the hedge and exposure don’t move 1:1. ‘Hedged’ books blow up when the basis widens exactly in the scenario you thought you neutralized."
+  },
+  {
+    "topic": "Notional vs economic exposure",
+    "category": "Derivatives",
+    "wikiTitle": "Notional amount",
+    "fact": "Derivative notionals can dwarf cash markets while net risk is smaller (or vice versa with leverage). Always translate to delta, DV01, or CS01 — raw notional is a headline, not a risk measure."
+  },
+  {
+    "topic": "Market liquidity",
+    "category": "Liquidity",
+    "wikiTitle": "Market liquidity",
+    "fact": "Market liquidity is the ability to trade size quickly at low cost without moving the price much. It is fragile: depth can vanish when volatility jumps and dealers pull inventory — liquidity is a risk factor, not a free constant."
+  },
+  {
+    "topic": "Funding liquidity",
+    "category": "Liquidity",
+    "wikiTitle": "Funding liquidity",
+    "fact": "Funding liquidity is the ability to raise cash or roll financing. When haircuts rise and repo lines shrink, investors sell what they can, not what they should — linking funding stress to market price spirals."
+  },
+  {
+    "topic": "Liquidity premium",
+    "category": "Liquidity",
+    "wikiTitle": "Liquidity premium",
+    "fact": "Illiquid assets often embed a liquidity premium in expected return. That premium is compensation for lockups and exit costs — and it can evaporate in a rush for the door when everyone re-prices liquidity at once."
+  },
+  {
+    "topic": "Bid depth vs last price",
+    "category": "Liquidity",
+    "wikiTitle": "Market depth",
+    "fact": "Last trade is a point; the book is a surface. A quiet last price with a hollow book is not the same market as a tight, deep book. Impact cost lives in the depth you walk through, not the print you remember."
+  },
+  {
+    "topic": "Systemic risk",
+    "category": "Systemic risk",
+    "wikiTitle": "Systemic risk",
+    "fact": "Systemic risk is the risk that distress propagates through interconnected balance sheets, markets, and confidence. Idiosyncratic failure is a credit event; systemic failure is a network failure."
+  },
+  {
+    "topic": "Too interconnected to fail",
+    "category": "Systemic risk",
+    "wikiTitle": "Too big to fail",
+    "fact": "Size, complexity, and interconnectedness create moral hazard and fire-sale externalities. Post-crisis policy tried to internalize those costs via capital, resolution regimes, and clearing — none of which make contagion impossible."
+  },
+  {
+    "topic": "Fire sales",
+    "category": "Systemic risk",
+    "wikiTitle": "Fire sale (finance)",
+    "fact": "Forced selling into illiquid markets pushes prices below fundamental value, impairs other holders’ marks, and triggers more selling. Leverage and mark-to-market rules can turn a liquidity event into a solvency spiral."
+  },
+  {
+    "topic": "Leverage amplification",
+    "category": "Risk management",
+    "wikiTitle": "Leverage (finance)",
+    "fact": "Leverage amplifies gains and losses and shortens the time you have to be wrong. The same return target with more leverage means thinner buffers against volatility, margin calls, and gap risk."
+  },
+  {
+    "topic": "Value at Risk caveats",
+    "category": "Risk management",
+    "wikiTitle": "Value at risk",
+    "fact": "VaR estimates a loss threshold at a confidence level over a horizon. It is silent about how bad the tail beyond that threshold is — and historically unstable when correlations and volatilities jump together."
+  },
+  {
+    "topic": "Stress testing",
+    "category": "Risk management",
+    "wikiTitle": "Stress test (financial)",
+    "fact": "Stress tests ask ‘what if’ under severe but plausible scenarios rather than average history. Good stresses break multiple assumptions at once (rates, spreads, liquidity, FX) — bad ones only move the variable that flatters the book."
+  },
+  {
+    "topic": "Counterparty risk",
+    "category": "Risk management",
+    "wikiTitle": "Counterparty risk",
+    "fact": "OTC exposure isn’t just mark-to-market today; it’s the risk your counterparty fails when the trade has positive replacement value. Netting, collateral, and clearing exist because replacement risk is real."
+  },
+  {
+    "topic": "Operational risk",
+    "category": "Risk management",
+    "wikiTitle": "Operational risk",
+    "fact": "Ops risk covers process failures, cyber, fraud, and model misuse — losses without a market move. It’s often underestimated because it’s lumpy, firm-specific, and doesn’t show up neatly in a factor model."
+  },
+  {
+    "topic": "Model risk",
+    "category": "Risk management",
+    "wikiTitle": "Model risk",
+    "fact": "Every valuation and risk model is a simplified map. Model risk is when the map is wrong in the region that matters — wrong vol dynamics, wrong default correlation, wrong liquidity assumptions — usually discovered live."
+  },
+  {
+    "topic": "Currency hedging",
+    "category": "FX & international",
+    "wikiTitle": "Currency hedging",
+    "fact": "Hedging foreign assets with forwards removes much of FX P&L but introduces roll costs/benefits from interest differentials (carry). Unhedged international equity is an equity view plus an FX view whether you intended both or not."
+  },
+  {
+    "topic": "Purchasing power parity",
+    "category": "FX & international",
+    "wikiTitle": "Purchasing power parity",
+    "fact": "PPP suggests exchange rates should align with relative price levels over long horizons. Short-run FX is dominated by rates, flows, and risk appetite — so PPP is a weak magnet, not a trading rule."
+  },
+  {
+    "topic": "Carry trade mechanics",
+    "category": "FX & international",
+    "wikiTitle": "Carry trade",
+    "fact": "FX carry borrows low-yielding currencies to fund high-yielding ones, harvesting the rate differential if spot doesn’t move adversely. It often works until a volatility spike forces a stampede out of crowded short-vol/carry positions."
+  },
+  {
+    "topic": "Covered interest parity",
+    "category": "FX & international",
+    "wikiTitle": "Interest rate parity",
+    "fact": "Covered interest parity links spot, forward, and interest differentials via arbitrage with FX swaps. Persistent CIP deviations after 2008 highlighted balance-sheet and regulatory frictions — ‘arbitrage’ needs balance sheet."
+  },
+  {
+    "topic": "Equity risk premium",
+    "category": "Macro & markets",
+    "wikiTitle": "Equity risk premium",
+    "fact": "The equity risk premium is the expected excess return of equities over a risk-free asset. It’s not observable; estimates from history, surveys, or implied earnings yields disagree — and the true premium can move with risk appetite."
+  },
+  {
+    "topic": "Monetary policy transmission",
+    "category": "Macro & markets",
+    "wikiTitle": "Monetary policy",
+    "fact": "Policy rates transmit through funding costs, discount rates, credit supply, FX, and expectations. Asset prices often move on the path of policy, not just the level — forward guidance is part of the instrument set."
+  },
+  {
+    "topic": "Real vs nominal rates",
+    "category": "Macro & markets",
+    "wikiTitle": "Real interest rate",
+    "fact": "Nominal rates include expected inflation (and inflation risk). Real rates matter for discounting real cash flows and for the attractiveness of holding duration. Mistaking a nominal move for a real one misreads the macro impulse."
+  },
+  {
+    "topic": "Fiscal and sovereign risk",
+    "category": "Macro & markets",
+    "wikiTitle": "Sovereign default",
+    "fact": "Sovereign debt risk depends on debt dynamics, growth, inflation, currency of issuance, and institutional credibility. Local-currency issuers can inflate; hard-currency debt cannot print its way out — different beasts."
+  },
+  {
+    "topic": "Index investing mechanics",
+    "category": "Vehicles & structure",
+    "wikiTitle": "Index fund",
+    "fact": "Cap-weighted index funds mechanically buy more of what rose and less of what fell. That minimizes turnover and fees, but it concentrates in winners and is not a ‘neutral’ view of fair value — it’s a rules-based portfolio."
+  },
+  {
+    "topic": "ETFs and creation/redemption",
+    "category": "Vehicles & structure",
+    "wikiTitle": "Exchange-traded fund",
+    "fact": "Authorized participants arbitrage ETF prices toward NAV via creation/redemption. That usually keeps ETFs tight to value — until underlying markets are stressed and the arbitrage pipeline itself gets costly or impaired."
+  },
+  {
+    "topic": "Mutual fund vs hedge fund",
+    "category": "Vehicles & structure",
+    "wikiTitle": "Hedge fund",
+    "fact": "Traditional mutual funds are typically long-only, daily liquidity, and tightly regulated on leverage and shorting. Hedge funds vary widely: more flexible tools, less liquidity, and fees that assume skill can overcome costs."
+  },
+  {
+    "topic": "Private equity J-curve",
+    "category": "Vehicles & structure",
+    "wikiTitle": "Private equity",
+    "fact": "PE cash flows often show a J-curve: early fees and investments before distributions. IRR can look heroic or horrible depending on timing of exits — and TVPI/MOIC tell a complementary story about multiple of capital."
+  },
+  {
+    "topic": "Closed-end discounts",
+    "category": "Vehicles & structure",
+    "wikiTitle": "Closed-end fund",
+    "fact": "Closed-end funds can trade at persistent discounts or premiums to NAV because shares aren’t continuously created/redeemed like open-ends. The discount is a market price of structure, sentiment, and sometimes governance."
+  },
+  {
+    "topic": "Securitization basics",
+    "category": "Credit structure",
+    "wikiTitle": "Securitization",
+    "fact": "Securitization pools assets and issues tranches with different seniority. Senior tranches absorb losses last; equity/first-loss absorbs first. Tranching redistributes risk — it doesn’t delete it from the system."
+  },
+  {
+    "topic": "Seniority waterfall",
+    "category": "Credit structure",
+    "wikiTitle": "Absolute priority rule",
+    "fact": "In distress, absolute priority says senior creditors get paid before junior claims and equity. In practice, negotiations, DIP financing, and intercreditor fights make recoveries a legal and strategic game, not a spreadsheet identity."
+  },
+  {
+    "topic": "Covenants",
+    "category": "Credit structure",
+    "wikiTitle": "Bond covenant",
+    "fact": "Covenants constrain borrower behavior (leverage, liens, restricted payments). Loose ‘covenant-lite’ structures shift more risk to lenders; tight covenants can trigger defaults earlier — trade-offs, not moral categories."
+  },
+  {
+    "topic": "Recovery rates",
+    "category": "Credit structure",
+    "wikiTitle": "Recovery rate (finance)",
+    "fact": "Expected loss ≈ probability of default × loss given default (1 − recovery). Recoveries vary wildly by seniority, collateral, jurisdiction, and cycle. Pricing credit on PD alone is half a model."
+  },
+  {
+    "topic": "Agency costs",
+    "category": "Corporate finance",
+    "wikiTitle": "Agency cost",
+    "fact": "Managers, shareholders, and creditors have overlapping but conflicting incentives. Debt can discipline free cash flow; it can also encourage risk-shifting near distress. Capital structure is partly a governance technology."
+  },
+  {
+    "topic": "Modigliani–Miller insight",
+    "category": "Corporate finance",
+    "wikiTitle": "Modigliani–Miller theorem",
+    "fact": "In frictionless markets, capital structure doesn’t change firm value — it just slices claims differently. Real-world taxes, bankruptcy costs, and information frictions are why the theorem is a benchmark, not a trading manual."
+  },
+  {
+    "topic": "Free cash flow",
+    "category": "Corporate finance",
+    "wikiTitle": "Free cash flow",
+    "fact": "Free cash flow to firm is operating cash after tax and reinvestment needs, before debt service. Earnings can be managed; cash flow still needs working capital and capex honesty — ‘quality of earnings’ lives here."
+  },
+  {
+    "topic": "Working capital cycle",
+    "category": "Corporate finance",
+    "wikiTitle": "Working capital",
+    "fact": "Cash conversion depends on receivables, inventory, and payables timing. Growth that outruns working capital funding can bankrupt a profitable firm. Liquidity planning is not optional for ‘high growth’ stories."
+  },
+  {
+    "topic": "Dividend vs buyback",
+    "category": "Corporate finance",
+    "wikiTitle": "Share repurchase",
+    "fact": "Dividends and buybacks both return cash; buybacks are more flexible and change share count. Neither creates value by magic — they redistribute cash and signal (sometimes falsely) about undervaluation and future investment needs."
+  },
+  {
+    "topic": "Efficient market hypothesis",
+    "category": "Market efficiency",
+    "wikiTitle": "Efficient-market hypothesis",
+    "fact": "EMH says prices reflect available information such that risk-adjusted abnormal profits are elusive. Markets can be hard to beat and still display bubbles, crashes, and slow diffusion — ‘efficiency’ is a spectrum, not a binary."
+  },
+  {
+    "topic": "Limits to arbitrage",
+    "category": "Market efficiency",
+    "wikiTitle": "Limits to arbitrage",
+    "fact": "Even when a mispricing is ‘obvious,’ shorting costs, funding constraints, and career risk can stop arbitrageurs from correcting it. Prices can stay wrong longer than a mark-to-market book can stay solvent."
+  },
+  {
+    "topic": "Noise traders",
+    "category": "Market efficiency",
+    "wikiTitle": "Noise trader",
+    "fact": "Noise trading injects demand unrelated to fundamentals, adding volatility and sometimes creating the mispricings professionals try to harvest. Liquidity provision is profitable until noise becomes a stampede."
+  },
+  {
+    "topic": "Behavioral biases in markets",
+    "category": "Market efficiency",
+    "wikiTitle": "Behavioral economics",
+    "fact": "Overconfidence, loss aversion, and extrapolation show up in flows and anomalies. Knowing the bias list doesn’t immunize you — institutions have mandates and incentives that recreate the same patterns at scale."
+  },
+  {
+    "topic": "Alpha vs beta",
+    "category": "Performance",
+    "wikiTitle": "Alpha (finance)",
+    "fact": "Beta is compensated exposure to systematic factors; alpha is residual performance after those exposures. Much marketed ‘alpha’ is unacknowledged beta (credit, liquidity, volatility selling) wearing a better fee."
+  },
+  {
+    "topic": "Benchmark relative risk",
+    "category": "Performance",
+    "wikiTitle": "Tracking error",
+    "fact": "Active managers are often judged on tracking error versus a benchmark, not absolute volatility. That can push herding into benchmark names — career risk is a market structure feature."
+  },
+  {
+    "topic": "Information ratio",
+    "category": "Performance",
+    "wikiTitle": "Information ratio",
+    "fact": "Information ratio is active return divided by tracking error — skill per unit of active risk. High IR with tiny active risk may not move the portfolio needle; low IR with huge bets is how careers end."
+  },
+  {
+    "topic": "Survivorship bias",
+    "category": "Performance",
+    "wikiTitle": "Survivorship bias",
+    "fact": "Performance databases that drop failed funds inflate average returns. Always ask what isn’t in the sample — dead strategies, delisted stocks, and quiet liquidations are where the optimistic mean went."
+  },
+  {
+    "topic": "Capacity and market impact",
+    "category": "Trading",
+    "wikiTitle": "Market impact",
+    "fact": "A strategy’s edge can shrink as AUM grows because trading moves the price against you. Capacity is an economic constraint: some anomalies exist mainly at sizes too small to matter for large allocators."
+  },
+  {
+    "topic": "Implementation shortfall",
+    "category": "Trading",
+    "wikiTitle": "Implementation shortfall",
+    "fact": "Implementation shortfall measures the gap between decision price and final execution, including delay, impact, and opportunity cost of unfilled size. Paper portfolios ignore it; live P&L does not."
+  },
+  {
+    "topic": "VWAP is not best execution",
+    "category": "Trading",
+    "wikiTitle": "Volume-weighted average price",
+    "fact": "Matching VWAP can still be poor if you shouldn’t have traded that way, or if you signaled size. Benchmarks discipline desks; they don’t define economic optimality for every order."
+  },
+  {
+    "topic": "Short selling mechanics",
+    "category": "Trading",
+    "wikiTitle": "Short (finance)",
+    "fact": "Shorting borrows shares, sells them, and later buys back to return. Stock borrow fees, recall risk, and squeeze dynamics mean short risk isn’t symmetric to long risk — tails and financing matter."
+  },
+  {
+    "topic": "Margin and maintenance",
+    "category": "Trading",
+    "wikiTitle": "Margin (finance)",
+    "fact": "Initial margin lets you lever; maintenance margin forces deleveraging when prices move against you. Forced liquidation can crystallize losses exactly when valuations look ‘cheap’ to someone with dry powder."
+  },
+  {
+    "topic": "Central bank balance sheets",
+    "category": "Macro & markets",
+    "wikiTitle": "Quantitative easing",
+    "fact": "QE expands central bank holdings of duration (and sometimes credit), injecting reserves and compressing term premia. QT reverses the flow. Portfolio rebalancing and signaling channels matter as much as the textbook money-multiplier story."
+  },
+  {
+    "topic": "Term premium",
+    "category": "Fixed income",
+    "wikiTitle": "Term premium",
+    "fact": "Long yields ≈ expected short rates + term premium. Term premium can be negative when safe long bonds are scarce or demanded as hedges. Reading every yield move as a pure growth/inflation forecast skips half the decomposition."
+  },
+  {
+    "topic": "Negative rates mechanics",
+    "category": "Fixed income",
+    "wikiTitle": "Negative interest rate policy",
+    "fact": "Negative policy rates flip the sign on depositing at the central bank and reshape money-market plumbing. Cash still has an effective floor near zero for retail, so transmission is uneven — and duration math still works with negative yields."
+  },
+  {
+    "topic": "Contango and backwardation",
+    "category": "Commodities",
+    "wikiTitle": "Contango",
+    "fact": "A futures curve in contango slopes up (deferred > nearby); backwardation slopes down. Long futures in contango tend to bleed roll yield; backwardation can add it. Spot narratives without curve context miss the return engine."
+  },
+  {
+    "topic": "Convenience yield",
+    "category": "Commodities",
+    "wikiTitle": "Convenience yield",
+    "fact": "Convenience yield is the benefit of holding physical inventory (avoiding stockouts, optionality). High convenience yield helps explain backwardation — the curve embeds more than pure storage-cost accounting."
+  },
+  {
+    "topic": "Real estate cap rates",
+    "category": "Real assets",
+    "wikiTitle": "Capitalization rate",
+    "fact": "A cap rate is NOI divided by property value — roughly an earnings yield for real estate. Cap-rate compression looks like price appreciation; rising rates and risk premia can reverse it even if NOI is stable."
+  },
+  {
+    "topic": "Infrastructure cash flows",
+    "category": "Real assets",
+    "wikiTitle": "Infrastructure as an asset class",
+    "fact": "Infrastructure assets often feature long-duration, contracted or regulated cash flows with inflation linkages — and political, construction, and regulatory risks that don’t show up in a simple bond analogy."
+  },
+  {
+    "topic": "Insurance-linked securities",
+    "category": "Alternatives",
+    "wikiTitle": "Catastrophe bond",
+    "fact": "Cat bonds transfer specified natural-catastrophe risk to capital markets. Returns are driven more by event risk than by equity beta — until correlated disasters or modeling error remind you that ‘uncorrelated’ is a claim, not a guarantee."
+  },
+  {
+    "topic": "Risk parity idea",
+    "category": "Portfolio theory",
+    "wikiTitle": "Risk parity",
+    "fact": "Risk parity allocates so risk contributions (not capital weights) are balanced across assets, often leveraging lower-vol bonds. It can diversify risk — and can hurt when rates and risk assets sell off together."
+  },
+  {
+    "topic": "Factor investing",
+    "category": "Portfolio theory",
+    "wikiTitle": "Factor investing",
+    "fact": "Factors (value, momentum, quality, size, low vol) are systematic return drivers with economic stories and long drawdowns. Crowding, definition drift, and implementation costs decide whether the academic premium survives live trading."
+  },
+  {
+    "topic": "Regime shifts",
+    "category": "Risk & return",
+    "wikiTitle": "Financial market regimes",
+    "fact": "Return and correlation statistics are regime-dependent. Strategies optimized on one volatility/correlation regime can fail in another. The most expensive assumption in a risk model is ‘this time looks like the sample.’"
+  },
+  {
+    "topic": "Moral hazard in finance",
+    "category": "Systemic risk",
+    "wikiTitle": "Moral hazard",
+    "fact": "When losses are shared with taxpayers or counterparties but gains are private, risk-taking expands. Prudential regulation, bail-in, and skin-in-the-game rules try to realign incentives — imperfectly, because crises rewrite the rules in real time."
+  },
+  {
+    "topic": "Netting and close-out",
+    "category": "Market structure",
+    "wikiTitle": "Close-out netting",
+    "fact": "Master agreements allow close-out netting: on default, offset positive and negative contract values into one claim. That shrinks gross exposure dramatically — and makes the legal enforceability of netting a systemic plumbing issue."
+  },
+  {
+    "topic": "Haircuts and procyclicality",
+    "category": "Liquidity",
+    "wikiTitle": "Haircut (finance)",
+    "fact": "Collateral haircuts rise when volatility rises, demanding more capital exactly when marks are stressed. That procyclicality turns risk-management prudence at the trade level into system-wide deleveraging pressure."
+  },
+  {
+    "topic": "LIBOR to SOFR transition",
+    "category": "Fixed income",
+    "wikiTitle": "SOFR",
+    "fact": "LIBOR was a panel-estimated interbank rate; SOFR is a transaction-based overnight Treasury repo rate. The transition rewired loan, derivative, and fallback conventions — a reminder that ‘the floating rate’ is an institutional construct."
+  },
+  {
+    "topic": "Duration gap banking",
+    "category": "Financial institutions",
+    "wikiTitle": "Duration gap",
+    "fact": "Banks often fund longer-duration assets with shorter-duration liabilities. That maturity transformation earns spread in calm markets and can devastate economic value when rates reprice liabilities faster than assets — classic interest-rate risk."
+  },
+  {
+    "topic": "Liquidity coverage ratio idea",
+    "category": "Financial institutions",
+    "wikiTitle": "Liquidity coverage ratio",
+    "fact": "LCR-style rules require enough high-quality liquid assets to survive a modeled short stress outflow. They reduce run risk — and increase demand for the same safe assets everyone needs in a crisis."
+  },
+  {
+    "topic": "Mark-to-market vs mark-to-model",
+    "category": "Valuation",
+    "wikiTitle": "Mark-to-market accounting",
+    "fact": "Level 1 marks use observable prices; deeper levels rely more on models and unverifiable inputs. In stress, the boundary between ‘price’ and ‘model’ becomes a governance and capital question, not just an accounting footnote."
+  },
+  {
+    "topic": "Adverse selection in markets",
+    "category": "Market structure",
+    "wikiTitle": "Adverse selection",
+    "fact": "Liquidity providers lose to informed traders and widen spreads or pull quotes to compensate. When information asymmetry spikes, markets can gap not because ‘nobody knows the price,’ but because nobody wants to be the bid."
+  }
+]
