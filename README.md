@@ -70,4 +70,4 @@ Subscribers are stored in `data/subscribers.json` (gitignored). Curated briefs l
 
 ## Content
 
-Briefings cover asset classes, market structure, valuation, risk/return, fixed income, derivatives, portfolio theory, liquidity, and systemic risk — written for finance professionals, not consumer tip lists. Images are optional (Wikipedia when a solid photo exists); text-first is the default.
+Briefings cover asset classes, market structure, valuation, risk/return, fixed income, derivatives, portfolio theory, liquidity, and systemic risk — written for finance professionals, not consumer tip lists. Each fact includes a slightly longer briefing, a concrete worked example, and further-reading links. A Wikimedia Commons diagram is attached only when a curated public graphic fits the topic; otherwise the send is text-only.

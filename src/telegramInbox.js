@@ -136,6 +136,7 @@ export async function startTelegramInbox({
             chatId,
             messageHtml: fact.message,
             imageUrl: fact.imageUrl,
+            photoCaptionHtml: fact.photoCaption,
           });
           lastFactAt.set(chatKey, Date.now());
           console.log(`[fact] sent ${fact.topic} to chat ${chatId}`);

@@ -37,6 +37,7 @@ export async function sendDailyFact({ dryRun = false } = {}) {
         chatId: sub.chatId,
         messageHtml: fact.message,
         imageUrl: fact.imageUrl,
+        photoCaptionHtml: fact.photoCaption,
       });
       sentCount += 1;
       console.log(`Sent briefing about ${fact.topic} → ${who}`);

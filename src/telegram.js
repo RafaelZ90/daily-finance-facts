@@ -1,4 +1,5 @@
 const API = "https://api.telegram.org";
+const PHOTO_CAPTION_LIMIT = 1024;
 
 async function telegramCall(botToken, method, payload, { timeoutMs } = {}) {
   const response = await fetch(`${API}/bot${botToken}/${method}`, {
@@ -26,21 +27,40 @@ export async function sendTelegramMessage({ botToken, chatId, textHtml }) {
   });
 }
 
-/** Send photo + caption when possible; fall back to text-only. */
+/**
+ * Send photo + caption when possible.
+ * If the full briefing exceeds Telegram's ~1024 caption limit, send a short
+ * photo caption then the full text as a follow-up message.
+ */
 export async function sendTelegramBriefing({
   botToken,
   chatId,
   messageHtml,
   imageUrl,
+  photoCaptionHtml,
 }) {
   if (imageUrl) {
+    const fitsInCaption = messageHtml.length <= PHOTO_CAPTION_LIMIT;
+    const caption = fitsInCaption
+      ? messageHtml
+      : photoCaptionHtml ||
+        "📈 <b>Daily Finance Facts</b>\n\nFull briefing follows ↓";
+
     try {
-      return await telegramCall(botToken, "sendPhoto", {
+      await telegramCall(botToken, "sendPhoto", {
         chat_id: chatId,
         photo: imageUrl,
-        caption: messageHtml,
+        caption,
         parse_mode: "HTML",
       });
+      if (!fitsInCaption) {
+        await sendTelegramMessage({
+          botToken,
+          chatId,
+          textHtml: messageHtml,
+        });
+      }
+      return;
     } catch (error) {
       console.warn(`Photo send failed (${error.message}); sending text only.`);
     }
@@ -83,9 +103,9 @@ export function commandsHelpHtml(sendTimeLabel = "8:00 AM") {
 
 export function welcomeMessageHtml(sendTimeLabel = "8:00 AM") {
   return [
-    "📈 <b>Daily Finance Briefing</b> — you're subscribed.",
+    "📈 <b>Daily Finance Facts</b> — you're subscribed.",
     "",
-    `You'll get one sharp educational finance note every day at <b>${sendTimeLabel}</b>.`,
+    `You'll get one sharp educational finance briefing (worked example + further-reading links; diagram when a good public one exists) every day at <b>${sendTimeLabel}</b>.`,
     "",
     commandsHelpHtml(sendTimeLabel),
     "",
@@ -108,7 +128,7 @@ export async function sendHelpMessage({ botToken, chatId, sendTimeLabel }) {
     botToken,
     chatId,
     textHtml: [
-      "📈 <b>Daily Finance Briefing</b> — command list",
+      "📈 <b>Daily Finance Facts</b> — command list",
       "",
       commandsHelpHtml(sendTimeLabel),
     ].join("\n"),

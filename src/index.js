@@ -26,7 +26,7 @@ async function migrateLegacyChatId() {
 const expression = "0 8 * * *";
 const sendTimeLabel = "8:00 AM";
 
-console.log(`Daily finance facts scheduler started`);
+console.log(`Daily Finance Facts scheduler started`);
 console.log(`Timezone: ${timezone}`);
 console.log(`Schedule: every day at ${sendTimeLabel}`);
 console.log(`Keep this process running (or use a process manager).`);

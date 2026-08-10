@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { getAvailableTopics, markTopicSent } from "./history.js";
-import { fetchTopicImageUrl } from "./image.js";
+import { resolveFactImage } from "./image.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const FACTS_PATH = path.join(__dirname, "..", "data", "facts.json");
@@ -47,13 +47,32 @@ function escapeHtml(text) {
     .replaceAll(">", "&gt;");
 }
 
-/** Telegram HTML caption / message body (photo is attached separately when present). */
-export function formatMessage(topic, fact, { credit, category } = {}) {
-  const opener = pickLine(OPENERS, topic + fact.slice(0, 24));
-  const closer = pickLine(CLOSERS, fact.slice(-24) + topic);
+function entryTitle(entry) {
+  return entry.title || entry.topic;
+}
+
+function entryBody(entry) {
+  return entry.body || entry.fact;
+}
+
+function entryKey(entry) {
+  return entryTitle(entry);
+}
+
+/**
+ * Telegram HTML caption / message body.
+ * Photo is attached separately only when a curated imageUrl exists.
+ */
+export function formatMessage(
+  topic,
+  body,
+  { credit, category, example, links = [] } = {},
+) {
+  const opener = pickLine(OPENERS, topic + body.slice(0, 24));
+  const closer = pickLine(CLOSERS, body.slice(-24) + topic);
 
   const lines = [
-    "📈 <b>Daily Finance Briefing</b>",
+    "📈 <b>Daily Finance Facts</b>",
     "",
     escapeHtml(opener),
     "",
@@ -67,11 +86,25 @@ export function formatMessage(topic, fact, { credit, category } = {}) {
   lines.push(
     `<b>Clearance level:</b> Professionally useful`,
     "",
-    "<b>Today’s finding:</b>",
-    escapeHtml(fact),
-    "",
-    escapeHtml(closer),
+    "<b>Today’s briefing:</b>",
+    escapeHtml(body),
   );
+
+  if (example) {
+    lines.push("", "<b>Worked example:</b>", escapeHtml(example));
+  }
+
+  lines.push("", escapeHtml(closer));
+
+  if (links?.length) {
+    lines.push("", "<b>Further reading:</b>");
+    for (const link of links) {
+      if (!link?.url) continue;
+      const label = escapeHtml(link.label || "Source");
+      const url = escapeHtml(link.url);
+      lines.push(`• <a href="${url}">${label}</a>`);
+    }
+  }
 
   if (credit) {
     lines.push("", `<i>${escapeHtml(credit)}</i>`);
@@ -80,39 +113,58 @@ export function formatMessage(topic, fact, { credit, category } = {}) {
   return lines.join("\n");
 }
 
+export function photoCaptionHtml(topic, category) {
+  const lines = [
+    "📈 <b>Daily Finance Facts</b>",
+    `<b>Subject:</b> ${escapeHtml(topic)}`,
+  ];
+  if (category) {
+    lines.push(`<b>Desk:</b> ${escapeHtml(category)}`);
+  }
+  lines.push("", "Full briefing follows ↓");
+  return lines.join("\n");
+}
+
 export async function getDailyFinanceFact({ recordHistory = true } = {}) {
   const facts = await loadFacts();
-  const keys = facts.map((entry) => entry.topic);
+  const keys = facts.map(entryKey);
   const available = await getAvailableTopics(keys, {
     resetIfEmpty: recordHistory,
   });
 
   const topicKey = available[0];
-  const entry = facts.find((fact) => fact.topic === topicKey);
+  const entry = facts.find((fact) => entryKey(fact) === topicKey);
 
   if (!entry) {
     throw new Error("Could not pick a finance fact.");
   }
 
-  const { imageUrl, credit } = await fetchTopicImageUrl(
-    entry.topic,
-    entry.wikiTitle,
-  );
+  const title = entryTitle(entry);
+  const body = entryBody(entry);
+  const example = entry.example || null;
+  const { imageUrl, credit } = await resolveFactImage(entry);
 
   if (recordHistory) {
-    await markTopicSent(entry.topic);
+    await markTopicSent(title);
   }
 
+  const message = formatMessage(title, body, {
+    credit,
+    category: entry.category,
+    example,
+    links: entry.links || [],
+  });
+
   return {
-    topic: entry.topic,
+    topic: title,
     category: entry.category || null,
-    fact: entry.fact,
+    fact: body,
+    example,
+    links: entry.links || [],
     imageUrl,
     credit,
-    sourceUrl: null,
-    message: formatMessage(entry.topic, entry.fact, {
-      credit,
-      category: entry.category,
-    }),
+    sourceUrl: entry.links?.[0]?.url || null,
+    message,
+    photoCaption: photoCaptionHtml(title, entry.category),
   };
 }
