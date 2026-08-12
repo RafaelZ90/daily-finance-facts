@@ -59,18 +59,63 @@ function entryKey(entry) {
   return entryTitle(entry);
 }
 
+const SHORT_BODY_CHARS = 220;
+const SHORT_EXAMPLE_CHARS = 140;
+
+/** Pull dollar/percent/integer tokens for a one-line numeric walkthrough. */
+function extractNumbers(text) {
+  return (text.match(/\$?\d[\d,]*(?:\.\d+)?%?/g) || []).slice(0, 4);
+}
+
+function expandBriefing(topic, body, category) {
+  if (!body) {
+    return `Today’s desk note covers ${topic}${category ? ` (${category})` : ""}: a concept worth keeping in your mental model when you read market headlines or size a position.`;
+  }
+  if (body.length >= SHORT_BODY_CHARS) return body;
+  const desk = category ? ` under ${category}` : "";
+  return `${body} Put differently: ${topic}${desk} is one of those ideas that keeps showing up once you look past the headline — it connects cash flows, risk, and how prices move in the real world.`;
+}
+
+function expandExample(topic, example, body = "") {
+  const seed = example || body || topic;
+  if (example && example.length >= SHORT_EXAMPLE_CHARS) return example;
+
+  const nums = extractNumbers(seed);
+  if (example) {
+    if (nums.length >= 2) {
+      return `${example} Numeric walkthrough: start at ${nums[0]}, apply the change described above, and you land near ${nums[nums.length - 1]} — that gap is “${topic}” on a single line item.`;
+    }
+    return `${example} Step-by-step: pick a round starting amount (say $100), apply one change that illustrates “${topic}”, then write down what moved and what stayed fixed.`;
+  }
+
+  if (nums.length >= 2) {
+    return `Using numbers from the briefing: begin at ${nums[0]}, walk through one realistic change, and compare to ${nums[nums.length - 1]}. That before → after gap is how desks sanity-check “${topic}” before trusting a headline figure.`;
+  }
+  return `Picture a simple ticket: start with $100 (or 100 units). Apply the idea behind “${topic}” in two steps — write starting value, one change, ending value. That mini walkthrough is how practitioners test intuition before sizing a trade.`;
+}
+
+function resolveEli5(topic, eli5, category) {
+  if (eli5) return eli5;
+  const desk = category ? ` (${category})` : "";
+  return `“${topic}”${desk} is just a grown-up name for a simple money idea — like explaining why piggy banks, IOUs, or trading stickers can feel fair or unfair when something important changes.`;
+}
+
 /**
  * Telegram HTML caption / message body.
  * Photo is attached separately only when a curated imageUrl exists.
- * Sections: Explanation → Example → Explain like I’m 5 → closer → Links.
+ * Sections: Briefing → Example → Explain like I’m 5 → closer → Links.
  */
 export function formatMessage(
   topic,
   body,
   { credit, category, example, eli5, links = [] } = {},
 ) {
-  const opener = pickLine(OPENERS, topic + body.slice(0, 24));
-  const closer = pickLine(CLOSERS, body.slice(-24) + topic);
+  const briefing = expandBriefing(topic, body, category);
+  const workedExample = expandExample(topic, example, briefing);
+  const plainTakeaway = resolveEli5(topic, eli5, category);
+
+  const opener = pickLine(OPENERS, topic + briefing.slice(0, 24));
+  const closer = pickLine(CLOSERS, briefing.slice(-24) + topic);
 
   const lines = [
     "📈 <b>Daily Finance Facts</b>",
@@ -87,21 +132,15 @@ export function formatMessage(
   lines.push(
     `<b>Clearance level:</b> Professionally useful`,
     "",
-    "<b>Explanation:</b>",
-    escapeHtml(body),
+    "<b>Briefing:</b>",
+    escapeHtml(briefing),
+    "",
+    "<b>Example:</b>",
+    escapeHtml(workedExample),
+    "",
+    "<b>Explain like I’m 5:</b>",
+    escapeHtml(plainTakeaway),
   );
-
-  if (example) {
-    lines.push("", "<b>Example:</b>", escapeHtml(example));
-  }
-
-  if (eli5) {
-    lines.push(
-      "",
-      "<b>Explain like I’m 5:</b>",
-      escapeHtml(eli5),
-    );
-  }
 
   lines.push("", escapeHtml(closer));
 
