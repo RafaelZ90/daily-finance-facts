@@ -62,11 +62,12 @@ function entryKey(entry) {
 /**
  * Telegram HTML caption / message body.
  * Photo is attached separately only when a curated imageUrl exists.
+ * Sections: Explanation → Example → Explain like I’m 5 → closer → Links.
  */
 export function formatMessage(
   topic,
   body,
-  { credit, category, example, links = [] } = {},
+  { credit, category, example, eli5, links = [] } = {},
 ) {
   const opener = pickLine(OPENERS, topic + body.slice(0, 24));
   const closer = pickLine(CLOSERS, body.slice(-24) + topic);
@@ -86,18 +87,26 @@ export function formatMessage(
   lines.push(
     `<b>Clearance level:</b> Professionally useful`,
     "",
-    "<b>Today’s briefing:</b>",
+    "<b>Explanation:</b>",
     escapeHtml(body),
   );
 
   if (example) {
-    lines.push("", "<b>Worked example:</b>", escapeHtml(example));
+    lines.push("", "<b>Example:</b>", escapeHtml(example));
+  }
+
+  if (eli5) {
+    lines.push(
+      "",
+      "<b>Explain like I’m 5:</b>",
+      escapeHtml(eli5),
+    );
   }
 
   lines.push("", escapeHtml(closer));
 
   if (links?.length) {
-    lines.push("", "<b>Further reading:</b>");
+    lines.push("", "<b>Links:</b>");
     for (const link of links) {
       if (!link?.url) continue;
       const label = escapeHtml(link.label || "Source");
@@ -142,6 +151,7 @@ export async function getDailyFinanceFact({ recordHistory = true } = {}) {
   const title = entryTitle(entry);
   const body = entryBody(entry);
   const example = entry.example || null;
+  const eli5 = entry.eli5 || entry.simple || null;
   const { imageUrl, credit } = await resolveFactImage(entry);
 
   if (recordHistory) {
@@ -152,6 +162,7 @@ export async function getDailyFinanceFact({ recordHistory = true } = {}) {
     credit,
     category: entry.category,
     example,
+    eli5,
     links: entry.links || [],
   });
 
@@ -160,6 +171,7 @@ export async function getDailyFinanceFact({ recordHistory = true } = {}) {
     category: entry.category || null,
     fact: body,
     example,
+    eli5,
     links: entry.links || [],
     imageUrl,
     credit,

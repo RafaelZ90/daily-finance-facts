@@ -1,5 +1,6 @@
 const API = "https://api.telegram.org";
 const PHOTO_CAPTION_LIMIT = 1024;
+const MESSAGE_LIMIT = 4096;
 
 async function telegramCall(botToken, method, payload, { timeoutMs } = {}) {
   const response = await fetch(`${API}/bot${botToken}/${method}`, {
@@ -28,9 +29,60 @@ export async function sendTelegramMessage({ botToken, chatId, textHtml }) {
 }
 
 /**
- * Send photo + caption when possible.
- * If the full briefing exceeds Telegram's ~1024 caption limit, send a short
- * photo caption then the full text as a follow-up message.
+ * Split a long HTML briefing into ≤4096-char chunks at paragraph boundaries.
+ * Prefers keeping section headers with their following body text.
+ */
+export function splitTelegramHtml(textHtml, limit = MESSAGE_LIMIT) {
+  if (!textHtml || textHtml.length <= limit) return [textHtml];
+
+  const paragraphs = textHtml.split("\n\n");
+  const chunks = [];
+  let current = "";
+
+  for (const para of paragraphs) {
+    const candidate = current ? `${current}\n\n${para}` : para;
+    if (candidate.length <= limit) {
+      current = candidate;
+      continue;
+    }
+    if (current) chunks.push(current);
+    if (para.length <= limit) {
+      current = para;
+      continue;
+    }
+    // Hard-split oversized paragraphs on single newlines, then by length.
+    let rest = para;
+    while (rest.length > limit) {
+      let cut = rest.lastIndexOf("\n", limit);
+      if (cut < limit * 0.5) cut = limit;
+      chunks.push(rest.slice(0, cut).trimEnd());
+      rest = rest.slice(cut).trimStart();
+    }
+    current = rest;
+  }
+  if (current) chunks.push(current);
+  return chunks.filter(Boolean);
+}
+
+async function sendTelegramMessages({ botToken, chatId, textHtml }) {
+  const parts = splitTelegramHtml(textHtml);
+  let last;
+  for (let i = 0; i < parts.length; i += 1) {
+    const suffix =
+      parts.length > 1 ? `\n\n<i>(${i + 1}/${parts.length})</i>` : "";
+    let body = parts[i];
+    if (suffix && body.length + suffix.length <= MESSAGE_LIMIT) {
+      body += suffix;
+    }
+    last = await sendTelegramMessage({ botToken, chatId, textHtml: body });
+  }
+  return last;
+}
+
+/**
+ * Send photo + caption when a curated public image exists.
+ * Long briefings: short photo caption, then text in one or more messages
+ * (split at section boundaries if over Telegram’s ~4096 limit).
  */
 export async function sendTelegramBriefing({
   botToken,
@@ -54,7 +106,7 @@ export async function sendTelegramBriefing({
         parse_mode: "HTML",
       });
       if (!fitsInCaption) {
-        await sendTelegramMessage({
+        await sendTelegramMessages({
           botToken,
           chatId,
           textHtml: messageHtml,
@@ -66,7 +118,7 @@ export async function sendTelegramBriefing({
     }
   }
 
-  return sendTelegramMessage({
+  return sendTelegramMessages({
     botToken,
     chatId,
     textHtml: messageHtml,
@@ -105,7 +157,7 @@ export function welcomeMessageHtml(sendTimeLabel = "8:00 AM") {
   return [
     "📈 <b>Daily Finance Facts</b> — you're subscribed.",
     "",
-    `You'll get one sharp educational finance briefing (worked example + further-reading links; diagram when a good public one exists) every day at <b>${sendTimeLabel}</b>.`,
+    `You'll get one educational finance briefing every day at <b>${sendTimeLabel}</b>: a deeper desk-style explanation, a fully worked example, a plain-language “explain like I’m 5” takeaway, plus further-reading links (and a diagram only when a good public one exists).`,
     "",
     commandsHelpHtml(sendTimeLabel),
     "",
